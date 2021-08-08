@@ -1,0 +1,9 @@
+apiVersion: cache.example.com/v1alpha1
+kind: Memcached
+metadata:
+  name: memcached-sample
+  finalizers:
+  - memcached-sample
+spec:
+  # Add fields here
+  size: 1
