@@ -20,14 +20,16 @@ The principle is not to traverse all the graph during 1 reconciliation but, at e
   + in case of new state change, perform asynchroniously the actions related to this state
   + if the expected state is not the current state, requeue a controller runtime event for further Reconiliation...
 
-The proposition is to implement an OKT resource to manage the application life cycle like we have resource of different kind in Kubernetes. 
-    + The application's state is evolving through the multiple Reconciliations. 
-    + The expected state is specified in the CR, 
-    + The current state is got from a specific Client call to pick up the information and map it into the corresponding state representation.
-    + It based on:
-        + A state machine based on what is offered by the OKT's GO module `tools/statemachine`
-        + A Client implementing OKT's Client interface (CRUD) that communicate with the application 
-        + An OKT application resource that can be registered by the OKT Reconciler
+The proposition is to implement an OKT resource to manage the application life cycle like we have resource of different kind in Kubernetes: 
++ The application's state is evolving through the multiple Reconciliations. 
++ The expected state is specified in the CR, 
++ The current state is got from a specific Client call to pick up the information and map it into the corresponding state representation.
+
+It based on:
++ A state machine based on what is offered by the OKT's GO module `tools/statemachine`
++ A Client implementing OKT's Client interface (CRUD) that communicate with the application 
++ An OKT application resource that can be registered by the OKT Reconciler
+
 
 ## Example of Life Cycle Graph implementation as currently offered by the OKT tools/statemachine GO module
 
