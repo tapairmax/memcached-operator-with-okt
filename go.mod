@@ -1,4 +1,4 @@
-module github.com/example/memcached-operator
+module github.com/tapairmax/memcached-operator-with-okt
 
 go 1.15
 
@@ -15,6 +15,6 @@ require (
 )
 
 // ADDED4OKT: To use OKT as a library located on your machine, uncomment the first replace rule and comment the 2nd replace rule.
-replace gitlab.tech.orange/dbmsprivate/operators/okt => /home/dave/go/src/okt-sm_generic
+replace gitlab.tech.orange/dbmsprivate/operators/okt => /home/cloud/go/src/okt
 
 //replace gitlab.tech.orange/dbmsprivate/operators/okt => gitlab.tech.orange/dbmsprivate/operators/okt.git v1.5.0-beta.3

@@ -10,7 +10,7 @@ package controllers
 **/
 
 import (
-	appapi "github.com/example/memcached-operator/api/v1alpha1"
+	appapi "github.com/tapairmax/memcached-operator-with-okt/api/v1alpha1"
 
 	oktres "gitlab.tech.orange/dbmsprivate/operators/okt/resources"
 	okthash "gitlab.tech.orange/dbmsprivate/operators/okt/tools/hash"
@@ -70,7 +70,6 @@ func deploymentForMemcached(m *appapi.Memcached) *appsv1.Deployment {
 	*/
 	return dep
 }
-
 
 // ResourceMCDeploymentMutator xx
 type ResourceMCDeploymentMutator struct {

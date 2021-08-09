@@ -25,7 +25,7 @@ import (
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	cachev1alpha1 "github.com/example/memcached-operator/api/v1alpha1"
+	cachev1alpha1 "github.com/tapairmax/memcached-operator-with-okt/api/v1alpha1"
 
 	//ADDED4OKT
 	oktreconciler "gitlab.tech.orange/dbmsprivate/operators/okt/reconciler"
