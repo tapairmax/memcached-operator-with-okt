@@ -1,4 +1,8 @@
-# Application State Machine implementation
+# Application State Machine implementation with OKT
+
+OKT Stands for Operators Karma Tools that will be soon released under Apache 2.0 License, copyright 2021 Orange SA
+
+This state machine GO API described below, through the tests, is already implemented by an "Operators Karma Tools" GO module. 
 
 
 ## Principle
