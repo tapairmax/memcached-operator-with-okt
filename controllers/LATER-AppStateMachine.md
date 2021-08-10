@@ -177,9 +177,11 @@ It based on:
             require.Nil(t, err, "No error must be raised here")
         }
 
-        entered, err = sm.EnterNextState(LCGEvents{Run})
+        entered, err = sm.EnterNextState(LCGEvents{Start, Run})  // Priority test
         require.True(t, entered, "Must be entered in Run state")
         require.Nil(t, err, "No error must be raised here")
+        state = sm.GetState()
+        require.Equal(t, Run, state, "Current state must be Run as Start is not a next state of Service")
 
         entered, err = sm.EnterNextState(LCGEvents{DefaultState})
         require.True(t, entered, "Must be entered in Stop state")
