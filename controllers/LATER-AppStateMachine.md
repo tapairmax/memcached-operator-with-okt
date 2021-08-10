@@ -177,42 +177,35 @@ It based on:
             require.Nil(t, err, "No error must be raised here")
         }
 
-        entered, err = sm.EnterNextState(LCGEvents{Start, Run})  // Priority test
-        require.True(t, entered, "Must be entered in Run state")
-        require.Nil(t, err, "No error must be raised here")
-        state = sm.GetState()
-        require.Equal(t, Run, state, "Current state must be Run as Start is not a next state of Service")
+    entered, err = sm.EnterNextState(LCGEvents{Run, Stop}) // Priority test
+    require.True(t, entered, "Must be entered in Run state")
+    require.Nil(t, err, "No error must be raised here")
+    state = sm.GetState()
+    require.Equal(t, Stop, state, "Current state must be Stop as Run is not the prior state")
 
-        entered, err = sm.EnterNextState(LCGEvents{DefaultState})
-        require.True(t, entered, "Must be entered in Stop state")
-        require.Nil(t, err, "No error must be raised here")
-        state = sm.GetState()
-        require.Equal(t, Stop, state, "Current state must be Stop now it is the Default after Run")
+    entered, err = sm.EnterNextState(LCGEvents{DefaultState})
+    require.True(t, entered, "Must be entered in  state")
+    require.Nil(t, err, "No error must be raised here")
+    off = sm.IsOFF()
+    require.True(t, off, "The state machine should be OFF after traversing a leaf node in the graph")
+    state = sm.GetState()
+    require.Equal(t, DefaultState, state, "Current state must undefined/default when machine is OFF")
 
-        entered, err = sm.EnterNextState(LCGEvents{DefaultState})
-        require.True(t, entered, "Must be entered in  state")
-        require.Nil(t, err, "No error must be raised here")
-        off = sm.IsOFF()
-        require.True(t, off, "The state machine should be OFF after traversing a leaf node in the graph")
-        state = sm.GetState()
-        require.Equal(t, DefaultState, state, "Current state must be End")
+    path = sm.GetPathInGraph()
+    fmt.Println(path)
 
-        path = sm.GetPathInGraph()
-        fmt.Println(path)
+    // Start>Run>Stop>End
+    off = sm.IsOFF()
+    require.True(t, off, "The state machine should be OFF after traversing a leaf node in the graph")
+    entered = sm.SetState(Start)
+    require.True(t, entered, "Should be entered in Start state")
 
-        // Start>Run>Stop>End
-        off = sm.IsOFF()
-        require.True(t, off, "The state machine should be OFF after traversing a leaf node in the graph")
-        entered = sm.SetState(Start)
-        require.True(t, entered, "Should be entered in Start state")
+    for sm.IsOFF() == false {
+      entered, _ = sm.EnterNextState(LCGEvents{DefaultState})
+      require.True(t, entered, "Should be entered in Start state")
+    }
+    require.True(t, entered, "Should be entered in state")
 
-        for sm.IsOFF() == false {
-            entered, _ = sm.EnterNextState(LCGEvents{DefaultState})
-            require.True(t, entered, "Should be entered in Start state")
-        }
-        require.True(t, entered, "Should be entered in state")
-
-        path = sm.GetPathInGraph()
-        fmt.Println(path)
-    } 
-
+    path = sm.GetPathInGraph()
+    fmt.Println(path)
+  }
