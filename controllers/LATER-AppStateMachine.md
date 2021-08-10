@@ -7,7 +7,7 @@ This state machine GO API described below, through the tests, is already impleme
 
 ## Principle
 
-An application can take several states and exposing the current state it has during a run is like pointing the location of a mobile object on a map. 
+An application can take several states and exposing the current state it has during a run is like pointing the location of a mobile object on a geographical map. 
 
 Having a Graph to describe what is managed by the K8S Operator should be helpful for a human operator or external components in charge to bring some "observability" features to a K8S operator.
 
