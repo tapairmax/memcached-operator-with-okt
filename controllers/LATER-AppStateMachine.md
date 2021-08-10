@@ -22,10 +22,11 @@ The principle is not to traverse all the graph during 1 reconciliation but, at e
   + collect events that happened, and generate, if needed, the event telling to go to the state accordingly to the expected state in CR (add it to the collected events),
   + trigger (or not) a next state in regards to the collected events
   + in case of new state change, perform asynchroniously the actions related to this state
-  + if the expected state is not the current state, requeue a controller runtime event for further Reconiliation...
+  + if the expected state is not the current state, requeue a controller runtime event for further Reconciliation...
 
-The proposition is to implement an OKT resource to manage the application life cycle like we have resource of different kind in Kubernetes: 
-+ The application's state is evolving through the multiple Reconciliations. 
+The proposition is to implement an OKT App resource to manage the application life cycle like we implement an OKT resource mutator to manage different kind of Kubernetes resources: 
++ The application's state is evolving through the multiple Reconciliations,
++ The App resource implements all actions to do at each state, 
 + The expected state is specified in the CR, 
 + The current state is got from a specific Client call to pick up the information and map it into the corresponding state representation.
 
@@ -177,35 +178,35 @@ It based on:
             require.Nil(t, err, "No error must be raised here")
         }
 
-    entered, err = sm.EnterNextState(LCGEvents{Run, Stop}) // Priority test
-    require.True(t, entered, "Must be entered in Run state")
-    require.Nil(t, err, "No error must be raised here")
-    state = sm.GetState()
-    require.Equal(t, Stop, state, "Current state must be Stop as Run is not the prior state")
+        entered, err = sm.EnterNextState(LCGEvents{Run, Stop}) // Priority test
+        require.True(t, entered, "Must be entered in Run state")
+        require.Nil(t, err, "No error must be raised here")
+        state = sm.GetState()
+        require.Equal(t, Stop, state, "Current state must be Stop as Run is not the prior state")
 
-    entered, err = sm.EnterNextState(LCGEvents{DefaultState})
-    require.True(t, entered, "Must be entered in  state")
-    require.Nil(t, err, "No error must be raised here")
-    off = sm.IsOFF()
-    require.True(t, off, "The state machine should be OFF after traversing a leaf node in the graph")
-    state = sm.GetState()
-    require.Equal(t, DefaultState, state, "Current state must undefined/default when machine is OFF")
+        entered, err = sm.EnterNextState(LCGEvents{DefaultState})
+        require.True(t, entered, "Must be entered in  state")
+        require.Nil(t, err, "No error must be raised here")
+        off = sm.IsOFF()
+        require.True(t, off, "The state machine should be OFF after traversing a leaf node in the graph")
+        state = sm.GetState()
+        require.Equal(t, DefaultState, state, "Current state must undefined/default when machine is OFF")
 
-    path = sm.GetPathInGraph()
-    fmt.Println(path)
+        path = sm.GetPathInGraph()
+        fmt.Println(path)
 
-    // Start>Run>Stop>End
-    off = sm.IsOFF()
-    require.True(t, off, "The state machine should be OFF after traversing a leaf node in the graph")
-    entered = sm.SetState(Start)
-    require.True(t, entered, "Should be entered in Start state")
+        // Start>Run>Stop>End
+        off = sm.IsOFF()
+        require.True(t, off, "The state machine should be OFF after traversing a leaf node in the graph")
+        entered = sm.SetState(Start)
+        require.True(t, entered, "Should be entered in Start state")
 
-    for sm.IsOFF() == false {
-      entered, _ = sm.EnterNextState(LCGEvents{DefaultState})
-      require.True(t, entered, "Should be entered in Start state")
-    }
-    require.True(t, entered, "Should be entered in state")
+        for sm.IsOFF() == false {
+          entered, _ = sm.EnterNextState(LCGEvents{DefaultState})
+          require.True(t, entered, "Should be entered in Start state")
+        }
+        require.True(t, entered, "Should be entered in state")
 
-    path = sm.GetPathInGraph()
-    fmt.Println(path)
-  }
+        path = sm.GetPathInGraph()
+        fmt.Println(path)
+      }
