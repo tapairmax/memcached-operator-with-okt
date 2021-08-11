@@ -7,7 +7,7 @@ require (
 	github.com/onsi/gomega v1.14.0
 
 	// ADDED4OKT
-	github.com/Orange-OpenSource/Operators-Karma-Tools v1.5.0-beta.4
+	github.com/Orange-OpenSource/Operators-Karma-Tools v1.5.0-beta.5
 	k8s.io/api v0.21.3
 	k8s.io/apimachinery v0.21.3
 	k8s.io/client-go v0.21.3

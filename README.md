@@ -18,6 +18,12 @@ So it'll never work as is without OKT. This code just to illustrate an implement
 
 ## Usage
 
+### Clone OKT and Memcached-with-OKT repositries
+
+        $ cd $HOME/go/src
+	$ git clone https://github.com/Orange-OpenSource/Operators-Karma-Tools.git
+	$ git clone https://github.com/tapairmax/memcached-operator-with-okt.git
+
 ### Memcached project Init
 
     $ make generate
