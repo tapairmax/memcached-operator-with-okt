@@ -7,7 +7,7 @@ require (
 	github.com/onsi/gomega v1.14.0
 
 	// ADDED4OKT
-	gitlab.tech.orange/dbmsprivate/operators/okt v1.5.0-beta.3
+	github.com/Orange-OpenSource/Operators-Karma-Tools v1.5.0-beta.4
 	k8s.io/api v0.21.3
 	k8s.io/apimachinery v0.21.3
 	k8s.io/client-go v0.21.3
@@ -15,6 +15,7 @@ require (
 )
 
 // ADDED4OKT: To use OKT as a library located on your machine, uncomment the first replace rule and comment the 2nd replace rule.
-replace gitlab.tech.orange/dbmsprivate/operators/okt => /home/cloud/go/src/Operators-Karma-Tools
+replace github.com/Orange-OpenSource/Operators-Karma-Tools => /home/cloud/go/src/Operators-Karma-Tools
 
-//replace gitlab.tech.orange/dbmsprivate/operators/okt => gitlab.tech.orange/dbmsprivate/operators/okt.git v1.5.0-beta.3
+// No longer needed on Github
+//replace gitlab.xxxxx.orange/yyyyy/okt => gitlab.xxxxx.orange/yyyyy/okt.git v1.5.0-beta.3

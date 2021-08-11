@@ -9,8 +9,8 @@ package controllers
 // Resource type Deployment: {Deployment apps/v1   }
 
 import (
-	oktres "gitlab.tech.orange/dbmsprivate/operators/okt/resources"
-	okthelpers "gitlab.tech.orange/dbmsprivate/operators/okt/resources/k8s"
+	oktres "github.com/Orange-OpenSource/Operators-Karma-Tools/resources"
+	okthelpers "github.com/Orange-OpenSource/Operators-Karma-Tools/resources/k8s"
 
 	k8sres "k8s.io/api/apps/v1"
 	"k8s.io/apimachinery/pkg/runtime"

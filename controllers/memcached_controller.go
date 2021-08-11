@@ -28,9 +28,9 @@ import (
 	cachev1alpha1 "github.com/tapairmax/memcached-operator-with-okt/api/v1alpha1"
 
 	//ADDED4OKT
-	oktreconciler "gitlab.tech.orange/dbmsprivate/operators/okt/reconciler"
-	oktengines "gitlab.tech.orange/dbmsprivate/operators/okt/reconciler/engines"
-	okterr "gitlab.tech.orange/dbmsprivate/operators/okt/results"
+	oktreconciler "github.com/Orange-OpenSource/Operators-Karma-Tools/reconciler"
+	oktengines "github.com/Orange-OpenSource/Operators-Karma-Tools/reconciler/engines"
+	okterr "github.com/Orange-OpenSource/Operators-Karma-Tools/results"
 )
 
 // ADDED4OKT

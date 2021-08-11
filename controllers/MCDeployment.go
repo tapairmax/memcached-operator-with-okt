@@ -12,8 +12,8 @@ package controllers
 import (
 	appapi "github.com/tapairmax/memcached-operator-with-okt/api/v1alpha1"
 
-	oktres "gitlab.tech.orange/dbmsprivate/operators/okt/resources"
-	okthash "gitlab.tech.orange/dbmsprivate/operators/okt/tools/hash"
+	oktres "github.com/Orange-OpenSource/Operators-Karma-Tools/resources"
+	okthash "github.com/Orange-OpenSource/Operators-Karma-Tools/tools/hash"
 
 	appsv1 "k8s.io/api/apps/v1"
 	corev1 "k8s.io/api/core/v1"
