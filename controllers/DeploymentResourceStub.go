@@ -18,7 +18,6 @@ import (
 	k8sclient "sigs.k8s.io/controller-runtime/pkg/client"
 )
 
-
 // DeploymentResourceStub an OKT extended Deployment resource
 type DeploymentResourceStub struct {
 	Expected                         k8sres.Deployment

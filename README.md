@@ -16,25 +16,48 @@ So it'll never work as is without OKT. This code just to illustrate an implement
 + The `gen-res.sh` shell depends on the installation of the `okt-gen-res` binary in your PATH. To install it, download OKT repo and install the command thanks to the Makefile. It will install the command in $HOME/bin (see OKT documentation).
 
 
-## MemcaOperatorSDK Memcached project Init
+## Usage
+
+### Memcached project Init
 
     $ make generate
     $ make manifests
 
-## MemcaOperatorSDK Memcached project Local Run
+### Memcached project Local Run and example of output
 
     $ make install run
+    ....
+    2021-...Z        INFO    controllers.Memcached.ENV=dev   History: >CRChecker>ObjectsGetter>Mutator>Updater>SuccessManager>End
+    2021-...Z        INFO    controllers.Memcached.ENV=dev   Op: CR is succesfully picked up on Cluster      {"res": "Memcached/memcached-sample"}
+    2021-...Z        INFO    controllers.Memcached.ENV=dev   Op: resource registration success       {"res": "Deployment/memcached-sample"}
+    2021-...Z        INFO    controllers.Memcached.ENV=dev   Op: resource mutation success   {"res": "Deployment/memcached-sample"}
+    2021-...Z        INFO    controllers.Memcached.ENV=dev   Op: resource unchanged  {"res": "Deployment/memcached-sample"}
+    2021-...Z        INFO    controllers.Memcached.ENV=dev   Op: status updated      {"res": "Memcached/memcached-sample"}
+    2021-...Z        INFO    controllers.Memcached.ENV=dev   Consolidated requeue duration: 0 seconds
+    2021-...Z        INFO    controllers.Memcached.ENV=dev   1 CR is succesfully picked up on Cluster
+    2021-...Z        INFO    controllers.Memcached.ENV=dev   1 resource registration success
+    2021-...Z        INFO    controllers.Memcached.ENV=dev   1 resource mutation success
+    2021-...Z        INFO    controllers.Memcached.ENV=dev   1 resource unchanged
+    2021-...Z        INFO    controllers.Memcached.ENV=dev   1 status updated
+    2021-...Z        INFO    controllers.Memcached.ENV=dev   5 Ops(s)
+    2021-...Z        INFO    controllers.Memcached.ENV=dev   0 Error(s)
 
-## MemcaOperatorSDK Memcached project Wait for Reconciliation success
+
+### Memcached CR creation
+
+    $ vi config/samples/cache_v1alpha1_memcached.yaml
+    $ kubectl create -f config/samples/cache_v1alpha1_memcached.yaml
+
+### Memcached project Wait for Reconciliation success (after failure for example)
 
     $ kubectl wait --for=condition=ReconciliationSuccess Memcached/memcached-sample
 
-## MemcaOperatorSDK Memcached project Cleanup
+### Memcached project Cleanup
 
     $ kubectl delete -f config/samples/cache_v1alpha1_memcached.yaml
     $ make undeploy
 
 
-## Application Lifecyle concerns thanks to a State Machine
+## Memcached Application Lifecyle concerns thanks to a State Machine
 
 Please see the markdown [here](https://github.com/tapairmax/memcached-operator-with-okt/blob/master/controllers/LATER-AppStateMachine.md)

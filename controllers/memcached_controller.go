@@ -179,15 +179,14 @@ func (r *MemcachedReconciler) EnterInState(engine *oktengines.Stepper) {
 		r.MutateAllResources(false)
 	case "Updater":
 		r.CreateOrUpdateAllResources(0, false) // Only for modified resources
-
+		//r.Results.DisplayOpList(r.Log)
+	case "SuccessManager":
 		// Update the CR Status with the Node list (as in the original Memcached sample implementation)
 		if r.CR.Status.Nodes, err = r.getPodNamesList(); err != nil {
 			r.Results.AddOp(nil, okterr.OperationResultCRUDError, err, 0)
 			return
 		}
-		//r.Results.DisplayOpList(r.Log)
-	case "SuccessManager":
-		r.ManageSuccess() // Will save the CR Status as well
+		r.ManageSuccess() // Will save the CR's Reconciliation Status as well
 
 	// Debranching states (exiting from the main course)
 	case "CRFinalizer": // To come here, the CR must have a finalizer (in Metadata) with the same name as himself
