@@ -3,11 +3,11 @@ module github.com/tapairmax/memcached-operator-with-okt
 go 1.16
 
 require (
-	github.com/onsi/ginkgo v1.16.4
-	github.com/onsi/gomega v1.14.0
 
 	// ADDED4OKT
-	github.com/Orange-OpenSource/Operators-Karma-Tools v1.5.0-beta.5
+	github.com/Orange-OpenSource/Operators-Karma-Tools v1.11.0-beta.2
+	github.com/onsi/ginkgo v1.16.4
+	github.com/onsi/gomega v1.14.0
 	k8s.io/api v0.21.3
 	k8s.io/apimachinery v0.21.3
 	k8s.io/client-go v0.21.3
