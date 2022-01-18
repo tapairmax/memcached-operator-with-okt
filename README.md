@@ -1,8 +1,8 @@
 ## Intro
 
-This Operator is only usable with the Operator Karma Tools (OKT) which is still not available.
+This Operator is only usable with the Operators Karma Tools (OKT), see usage below, which relies itself on the OperatorSDK, a tool to build Kubernetes Operators.
 
-So it'll never work as is without OKT. This code just to illustrate an implementation to compare with the original Memcached Operator implemented with the OperatorSDK alone.
+This code just to illustrate an implementation to compare with the original Memcached Operator implemented with the OperatorSDK alone.
 
 + Note that we de-activated the webhooks in the `main.go` file. Uncomment to re-activate them if you have generated the expected certificates.
 + The `go.mod` file is updated to depend on a local clone of OKT (recommended). A replace rule is added to use OKT locally if needed. The line is commented in order to pick up [OKT on Orange's Gitlab](https://github.com/Orange-OpenSource/Operators-Karma-Tools.git) directly instead.
